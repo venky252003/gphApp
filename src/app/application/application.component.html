@@ -1,3 +1,43 @@
-<p>
-  application works!
-</p>
+<form class="compact" [formGroup]="appForm" (ngSubmit)="onSubmit()"  [hidden]="submitted">
+   <clr-alert [clrAlertType]="alertStyle" [(clrAlertClosed)]="!showAlert" (clrAlertClosedChange)="onClose()">
+    <div class="alert-item">
+        <span class="alert-text">
+          {{Message}} 
+        </span>
+    </div>
+   </clr-alert>
+    <section class="form-block">
+        <label style="font-size:22px;font-weight: 400; padding-left: 100px;">Application Detail Form</label>
+        <div class="form-group">
+            <label for="appName">Name</label>
+            <label for="appName" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm"
+                [class.invalid]="appForm.get('name').invalid && (appForm.get('name').dirty || appForm.get('name').touched)">
+                <input id="appName" type="text" formControlName="name">
+                <span class="tooltip-content">Name Required</span>
+            </label> 
+        </div>  
+        <div class="form-group">
+            <label for="appbulider">Builder</label>
+            <label for="appbulider" aria-haspopup="true" role="tooltip">
+                <input type="text" id="appbulider"  formControlName="bulider">
+            </label>
+       </div>
+       <div class="form-group">
+            <label for="appsurvay">Survay No</label>
+            <label for="appsurvay" aria-haspopup="true" role="tooltip">
+                <input type="text" id="appsurvay"  formControlName="survayNo">
+            </label>
+       </div>
+        <div class="form-group">
+            <label for="appAddress">Address</label>
+            <label for="addAddress" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm"
+                [class.invalid]="appForm.get('address').invalid && (appForm.get('address').dirty || appForm.get('address').touched)">
+                <textarea  id="appAddress"  formControlName = "address" rows="2" cols="25"></textarea>
+                <span class="tooltip-content">Address Required</span>
+            </label>
+        </div>
+        <div style="padding-top: 35px; padding-left: 35px;">
+             <button type="submit" class="btn btn-primary" [disabled]="appForm.invalid">Submit</button>
+        </div>
+    </section>
+</form>
